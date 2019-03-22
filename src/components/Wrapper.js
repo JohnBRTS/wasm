@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Porcupine from './porcupine';
 import PicovoiceAudioManager from './picovoiceAudioManager';
+import compileWasm from '../useWasm/compileWasm';
 const keywordIDs = {
   icommand: new Uint8Array([
     0xcf,
@@ -124,7 +125,7 @@ let processCallback = function(keywordIndex) {
 
   let keyword = keywordNames[keywordIndex];
   if (is_listening) {
-    console.log('is listening for further commands')
+    console.log('is listening for further commands');
     console.log('turning off listening');
     is_listening = false;
   }
@@ -155,6 +156,9 @@ class Wrapper extends Component {
   state = {
     on: false
   };
+  componentDidMount() {
+    compileWasm({url: './pv_porcupine.wasm'})
+  }
   start = () => {
     this.setState({ on: true });
     start();
