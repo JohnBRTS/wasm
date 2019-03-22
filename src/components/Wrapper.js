@@ -124,11 +124,12 @@ let processCallback = function(keywordIndex) {
 
   let keyword = keywordNames[keywordIndex];
   if (is_listening) {
-    if (keyword === 'icommand') {
-      console.log('(is_listening) > && (keyword === "icommand")');
-    }
+    console.log('is listening for further commands')
     console.log('turning off listening');
     is_listening = false;
+  }
+  if (keyword === 'icommand') {
+    console.log('(keyword === "icommand")');
   }
 };
 let audioManager;
